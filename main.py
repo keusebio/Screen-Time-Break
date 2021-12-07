@@ -19,7 +19,7 @@ def notify():
 
 def getData():
     with open("data.txt") as f:
-        data = int(f.readline())
+        data = float(f.readline())
         print(data)
         min_to_sec = data * 60
         print(min_to_sec)
@@ -31,12 +31,20 @@ def summary():
     #summarize data into message
     data = getData()
     sec_to_min = data / 60
-    sumStr = [  "Time to stretch! You've been on for {:.0f} minutes. ".format(sec_to_min),
+    sumStr = [  "Time to stretch! You've been on for {:.1f} minutes. ".format(sec_to_min),
                 "Thirsty? Time to get some water.",
-                "It's been {:.0f} minutes. Time for a short break.".format(sec_to_min),
+                "It's been {:.1f} minutes. Time for a short break.".format(sec_to_min),
              ]
     print(sec_to_min)
     return random.choice(sumStr)
 
 if __name__ == '__main__':
-    notify()
+    #for i in range(8):
+        sec = getData()
+        for t in  range(int(sec/30)):
+            temp = getData()
+            time.sleep(30)
+            if temp != sec:
+                sec = temp
+                break
+        notify()
