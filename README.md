@@ -6,10 +6,11 @@ A.Diviniagracia
 ## Description
 
 ## Dependencies
-``` 
+```
  python3
  PySimpleGUI
  plyer
+ python3-tk
 ```
 ## References used:
 > https://github.com/ri5h46h/Tic-Tac-Toe-Game-in-Python/blob/master/takeABreak.py
@@ -18,4 +19,4 @@ A.Diviniagracia
 
 > https://github.com/dushyantRathore/Crypto-Notifier/blob/master/cryptonotifier/Main.py
 
-## License 
+## License
