@@ -4,13 +4,13 @@ import time
 def notify():
     nt_title = "Screen Time"
     nt_message = summary()
-    nt_icon = "clock.ico"
+    nt_icon = "clock.png"
     nt_time = 10
-    
+
     notification.notify(
         title = nt_title,
         message = nt_message,
-        app_icon = nt_icon, 
+        app_icon = nt_icon,
         timeout = nt_time,
     )
 
@@ -30,9 +30,8 @@ def getData():
 def summary():
     #summarize data into message
     data = getData()
-    
+
     return "test"
 
 if __name__ == '__main__':
     notify()
-       
