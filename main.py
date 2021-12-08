@@ -1,33 +1,38 @@
 from plyer import notification
+import threading
+from threading import *
 import time
 import os
 import platform
 import random
 
+# notification method, displays notificaiton with given attributes
 def notify():
-    nt_title = "Screen Time"
+    nt_app_name = "Screen Time Break"
+    nt_title = "Screen Time Break"
     nt_message = summary()
     wdir = os.getcwd()
     nt_icon = os.path.join(wdir, 'clock' + (".ico" if platform.platform() =="Windows" else ".png"))
-    nt_time = 10
+    #nt_time = 10
 
     notification.notify(
+        app_name = nt_app_name,
         title = nt_title,
         message = nt_message,
         app_icon = nt_icon,
-        timeout = nt_time,
+        #timeout = nt_time,
     )
 
+# gets and returns time data in seconds, used for sleep function in ST_start()
 def getData():
     with open("data.txt") as f:
         data = float(f.readline())
-        #print(data)
         min_to_sec = data * 60
-        #print(min_to_sec)
         f.close()
 
     return min_to_sec
 
+# returns random string to print out in notify message
 def summary():
     #summarize data into message
     data = getData()
@@ -39,14 +44,19 @@ def summary():
     #print(sec_to_min)
     return random.choice(sumStr)
 
+# method to start the notification loop.
 def ST_start():
-    #while True:
+    while True:
         sec = getData()
-        for t in  range(int(sec/30)):
+        for t in  range(int(sec/15)):
             print(t)
             temp = getData()
-            time.sleep(30)
+            time.sleep(15)
             if temp != sec:
                 sec = temp
                 break
         notify()
+
+# to run script as stand alone program
+if __name__ == "__main__":
+    ST_start()
