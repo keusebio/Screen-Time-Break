@@ -3,6 +3,7 @@ import time
 import os
 import platform
 import random
+
 def notify():
     nt_title = "Screen Time"
     nt_message = summary()
@@ -20,9 +21,9 @@ def notify():
 def getData():
     with open("data.txt") as f:
         data = float(f.readline())
-        print(data)
+        #print(data)
         min_to_sec = data * 60
-        print(min_to_sec)
+        #print(min_to_sec)
         f.close()
 
     return min_to_sec
@@ -35,13 +36,14 @@ def summary():
                 "Thirsty? Time to get some water.",
                 "It's been {:.1f} minutes. Time for a short break.".format(sec_to_min),
              ]
-    print(sec_to_min)
+    #print(sec_to_min)
     return random.choice(sumStr)
 
-if __name__ == '__main__':
-    #for i in range(8):
+def ST_start():
+    #while True:
         sec = getData()
         for t in  range(int(sec/30)):
+            print(t)
             temp = getData()
             time.sleep(30)
             if temp != sec:

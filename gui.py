@@ -1,11 +1,12 @@
 import PySimpleGUI as sg
+from main import *
 
 # Define the window's contents
 layout = [  [sg.Text("Welcome to Screen Time!") ],
             [sg.Text("In minutes, how often would you like to be reminded to take a break?")],
             [sg.Input(key='-INPUT-')],
             [sg.Text(size=(40,1), key='-OUTPUT-')],
-            [sg.Button('Save'), sg.Button('Quit')]]
+            [sg.Button('Save'),sg.Button('Start'),sg.Button('Demo'), sg.Button('Quit')]]
 
 # Create the window
 window = sg.Window('Window Title', layout)
@@ -17,13 +18,19 @@ while True:
     if event == sg.WINDOW_CLOSED or event == 'Quit':
         break
     # Output a message to the window
-    if event == event =='Save':
+    if event =='Save':
         file = open('data.txt','w+')
         file.truncate(0)
         file.write(values['-INPUT-'])
         file.close()
         window['-OUTPUT-'].update('You will now be reminded every '
                 + values['-INPUT-'] + " minutes! ")
+    if event == 'Start':
+        print('start')
+        ST_start()
 
+    if event == 'Demo':
+        print('Demo')
+        notify()
 # Finish up by removing from the screen
 window.close()
