@@ -20,3 +20,4 @@ A.Diviniagracia
 > https://github.com/dushyantRathore/Crypto-Notifier/blob/master/cryptonotifier/Main.py
 
 ## License
+GNU General Public License
