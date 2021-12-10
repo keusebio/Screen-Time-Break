@@ -1,6 +1,10 @@
 import PySimpleGUI as sg
 from main import *
 
+t1 = threading.Thread(target=ST_start)
+t1.daemon = True
+tflag = False
+
 # Define the window's contents
 layout = [  [sg.Text("Welcome to Screen Time!") ],
             [sg.Text("In minutes, how often would you like to be reminded to take a break?")],
@@ -11,10 +15,10 @@ layout = [  [sg.Text("Welcome to Screen Time!") ],
 # Create the window
 window = sg.Window('Window Title', layout)
 
-# Display and interact with the Window using an Event Loop
-t1 = threading.Thread(target=ST_start)
-tflag = False
+#
 
+
+# Display and interact with the Window using an Event Loop
 while True:
     event, values = window.read()
 
@@ -34,12 +38,22 @@ while True:
 
     # starts the notification event with current data
     if event == 'Start':
-        print('start')
+        #print('start')
         if tflag == True:
+            file = open('flags.txt','w+')
+            file.truncate(0)
+            file.write('True')
+            file.close()
             t1.join()
             tflag = False
 
         if tflag == False:
+            t1 = threading.Thread(target=ST_start)
+            t1.daemon = True
+            file = open('flags.txt','w+')
+            file.truncate(0)
+            file.write('False')
+            file.close()
             t1.start()
             tflag = True
         #ST_start()

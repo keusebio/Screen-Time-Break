@@ -34,6 +34,13 @@ def getData():
     return min_to_sec
 
 # returns random string to print out in notify message
+def getFlag():
+    with open("flags.txt") as f:
+        data = f.readline()
+        f.close()
+
+    return data
+
 def summary():
     #summarize data into message
     data = getData()
@@ -51,7 +58,11 @@ def ST_start():
     #for x in range(2):
         sec = getData()
         for t in  range(int(sec/5)):
-            print(t)
+            stopFlag = getFlag()
+            if stopFlag == 'True':
+                exit()
+                #return
+            #print(t)
             temp = getData()
             time.sleep(5)
 
