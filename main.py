@@ -6,6 +6,7 @@ import os
 import platform
 import random
 
+
 # notification method, displays notificaiton with given attributes
 def notify():
     nt_app_name = "Screen Time Break"
@@ -47,11 +48,13 @@ def summary():
 # method to start the notification loop.
 def ST_start():
     while True:
+    #for x in range(2):
         sec = getData()
-        for t in  range(int(sec/15)):
+        for t in  range(int(sec/5)):
             print(t)
             temp = getData()
-            time.sleep(15)
+            time.sleep(5)
+
             if temp != sec:
                 sec = temp
                 break

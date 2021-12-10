@@ -12,13 +12,17 @@ layout = [  [sg.Text("Welcome to Screen Time!") ],
 window = sg.Window('Window Title', layout)
 
 # Display and interact with the Window using an Event Loop
+t1 = threading.Thread(target=ST_start)
+tflag = False
+
 while True:
     event, values = window.read()
 
     # See if user wants to quit or window was closed
     if event == sg.WINDOW_CLOSED or event == 'Quit':
+        #t1.join()
         break
-        
+
     # Save and overwrites previous data to data.txt
     if event =='Save':
         file = open('data.txt','w+')
@@ -31,7 +35,14 @@ while True:
     # starts the notification event with current data
     if event == 'Start':
         print('start')
-        ST_start()
+        if tflag == True:
+            t1.join()
+            tflag = False
+
+        if tflag == False:
+            t1.start()
+            tflag = True
+        #ST_start()
 
     #for demo purposes. Displays notification with current data.
     if event == 'Demo':
